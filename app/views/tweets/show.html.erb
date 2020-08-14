@@ -1,2 +1,7 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<h1>Tweet#show</h1>
+
+ 
+    <div> <%= link_to @tweet.user.twitter_handle, user_path(@tweet.user_id) %></div>
+    <%= link_to @tweet.text, tweet_path(@tweet) %> <br>
+    <%= link_to @tweet.created_at, tweet_path(@tweet) %> <br>
+    Likes <%= @tweet.likes.count %> </div> <br><br>

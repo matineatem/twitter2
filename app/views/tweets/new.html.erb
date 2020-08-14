@@ -1,2 +1,8 @@
-<h1>Tweets#new</h1>
-<p>Find me in app/views/tweets/new.html.erb</p>
+<h1>Tweet</h1>
+
+
+<%= form_for @tweet do |f| %>
+    <%=f.text_field :text %><br><br>
+    <%=f.collection_select(:user_id, User.all, :id, :name)%>
+    <%= f.submit "Tweet" %>
+<% end %>

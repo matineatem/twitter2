@@ -4,6 +4,9 @@
 <div> bio: <%= @user.bio %> </div><br>
 <div> birthday: <%= @user.birthday %> </div>
 
+<%= link_to "settings", edit_user_path(@user) %>
+
+
 <h3> Tweets </h3>
 
     <h3> Number of Tweets: <%= @user.tweets.count %> </h3>
@@ -12,9 +15,11 @@
         <div> <%= link_to @user.twitter_handle, user_path(@user) %></div>
          <%= link_to tweet.text, tweet_path(tweet) %> <br>
          <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
-         <%= tweet.likes.count %> </div> <br><br>
+         Likes <%= tweet.likes.count %> </div> <br><br>
 
     <% end %>
+
+
 
 
 
