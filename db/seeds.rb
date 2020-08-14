@@ -12,7 +12,7 @@ Like.destroy_all
 10.times do  User.create(name: Faker::TvShows::BigBangTheory.unique.character, 
     password: Faker::TvShows::GameOfThrones.dragon,
     handle: Faker::TvShows::GameOfThrones.unique.character,
-    bio: Faker::TvShows::GameOfThrones.quote,
+    bio: Faker::TvShows::GameOfThrones.unique.quote,
     birthday: Faker::Date.birthday(min_age: 18, max_age: 65) )
 end
 
