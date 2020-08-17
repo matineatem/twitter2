@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :tweets, only: [:index, :show, :new, :create, :destroy]
   resources :likes
   
-  get "/", to: "homepage#home" #show page 
+  get "/", to: "homepage#home", as: "homepage" #show page 
   get "/login", to: "sessions#login" #new 
   post "/login", to: "sessions#process_login" #create
 

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :set_user_session
+
   def index
     @users = User.all
   end
@@ -13,6 +16,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    session[:user] = @user
     redirect_to tweets_path
   end
 
@@ -29,13 +33,18 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_path
+    @user.tweets.clear
+    redirect_to homepage_path
   end
 
   private
   
   def user_params
     params.require(:user).permit(:name,:password,:handle,:bio,:birthday)
+  end
+
+  def set_user_session
+    @username = session[:user]
   end
 
 end

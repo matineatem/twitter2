@@ -1,13 +1,13 @@
 <h1>Tweets</h1>
 
-<%= button_to "my profile", user_path(@user["id"]), method: :get %> <br><br>
+<%= button_to "my profile", user_path(@username["id"]), method: :get %> <br><br>
 
 
 <%= form_tag tweets_path, method: :post do %>
     <label>Tweet:</label><br>
     <%= text_area_tag :'tweet[text]' %><br>
   
-    <%= submit_tag "Submit Post" %>
+    <%= submit_tag "Submit Post" %><br><br>
 <% end %>
 
 
