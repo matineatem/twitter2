@@ -22,7 +22,7 @@
     <%= link_to tweet.text, tweet_path(tweet) %> <br>
     <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
     Likes <%= tweet.likes.count %> </div> 
-    <%= button_to "<3", likes_path(@user.id, tweet.id), method: :post %><br>
+    <%= button_to "<3", likes_path(tweet), method: :post %><br>
  <% end %>
 
  
