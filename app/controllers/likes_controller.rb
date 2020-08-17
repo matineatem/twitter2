@@ -3,6 +3,10 @@ class LikesController < ApplicationController
     
   end
 
+  def show
+    
+  end
+
   def new
     @like = Like.new
   end
@@ -10,9 +14,9 @@ class LikesController < ApplicationController
   def create
     #params[:like][:user_id, :tweet_id]
     #   Like.create(user_id: .id, tweet_id: tweet.id)
-
+    @user = session[:user]
     
-    @like = Like.create(user_id: Tweet.find(params[:format]).user.id, tweet_id: Tweet.find(params[:format]).id)
+    @like = Like.create(user_id: @user["id"], tweet_id: Tweet.find(params[:format]).id)
     #byebug
 
     #@like = Like.create(like_params)

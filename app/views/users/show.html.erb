@@ -1,10 +1,14 @@
 <h1> Profile Page</h1>
-<div> <%= @user.name %> </div>
+
+<%= link_to "settings", edit_user_path(@user) %><br>
+
+<%= link_to "my feed", tweets_path %><br><br>
+
+<div> <%= @user.name.titlecase %> </div>
 <div> <%= @user.twitter_handle %> </div><br>
 <div> bio: <%= @user.bio %> </div><br>
-<div> birthday: <%= @user.birthday %> </div>
+<div> birthday: <%= @user.birthday %> </div><br>
 
-<%= link_to "settings", edit_user_path(@user) %>
 
 
 <h3> Tweets </h3>
