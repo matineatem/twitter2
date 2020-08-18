@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @user = @tweet.user 
     @tweet.destroy
-    redirect_to user_path(:back)
+    redirect_back(fallback_location:"/")
   end
 
   private

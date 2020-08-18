@@ -14,7 +14,7 @@
 
 <% @tweets.reverse.each do |tweet| %>
 <% if tweet.user %>
-    <div> <%= button_to tweet.user.twitter_handle, user_path(tweet.user_id) %></div> 
+    <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id), method: :get %></div> 
    <h3> <%= link_to tweet.text, tweet_path(tweet) %> <br></h3>
     <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
     Likes <%= tweet.likes.count %> 
