@@ -18,6 +18,13 @@ class TweetsController < ApplicationController
     redirect_to tweets_path
   end
 
+  def destroy
+    @tweet = Tweet.find(params[:id])
+    @user = @tweet.user 
+    @tweet.destroy
+    redirect_to user_path(:back)
+  end
+
   private
 
   def tweet_params

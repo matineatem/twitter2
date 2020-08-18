@@ -1,4 +1,4 @@
-<h1>Tweets</h1>
+<h1>News Feed</h1>
 
 <%= button_to "my profile", user_path(@username["id"]), method: :get %> <br><br>
 
@@ -6,7 +6,6 @@
 <%= form_tag tweets_path, method: :post do %>
     <label>Tweet:</label><br>
     <%= text_area_tag :'tweet[text]' %><br>
-  
     <%= submit_tag "Submit Post" %><br><br>
 <% end %>
 
@@ -14,12 +13,18 @@
 
 
 <% @tweets.reverse.each do |tweet| %>
-
-    <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id) %></div>
-    <%= link_to tweet.text, tweet_path(tweet) %> <br>
+<% if tweet.user %>
+    <div> <%= button_to tweet.user.twitter_handle, user_path(tweet.user_id) %></div> 
+   <h3> <%= link_to tweet.text, tweet_path(tweet) %> <br></h3>
     <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
-    Likes <%= tweet.likes.count %> </div> 
-    <%= button_to "<3", likes_path(tweet), method: :post %><br>
+    Likes <%= tweet.likes.count %> 
+
+    <%= button_to "❤️", likes_path(tweet), method: :post %>
+    <% if @username["id"] == tweet.user.id %>
+    <%= button_to "🗑️", tweet_path(tweet), method: :delete %>
+    <% end %>
+<br><br><br><br>
+    <% end %>
  <% end %>
 
  

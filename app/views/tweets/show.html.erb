@@ -5,3 +5,7 @@
     <%= link_to @tweet.text, tweet_path(@tweet) %> <br>
     <%= link_to @tweet.created_at, tweet_path(@tweet) %> <br>
     Likes <%= @tweet.likes.count %> </div> <br><br>
+
+    <% if @username["id"] == @tweet.user.id %>
+<%= link_to "delete tweet", tweet_path(@tweet), method: :delete %>
+<% end %>
