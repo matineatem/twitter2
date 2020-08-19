@@ -19,8 +19,12 @@
     <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
     Likes <%= tweet.likes.count %> 
 
-    <%= button_to "❤️", likes_path(tweet), method: :post %>
-    <% if @username["id"] == tweet.user.id %>
+    <% if tweet.like_user_ids.include?(@current_user.id)%>
+        <%= button_to "❤️", like_path(tweet), method: :delete %>
+    <%else%>
+        <%= button_to "♡", likes_path(tweet), method: :post %>
+    <%end%>
+<% if @username["id"] == tweet.user.id %>
     <%= button_to "🗑️", tweet_path(tweet), method: :delete %>
     <% end %>
 <br><br><br><br>

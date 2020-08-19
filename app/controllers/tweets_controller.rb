@@ -39,6 +39,8 @@ class TweetsController < ApplicationController
 
   def set_user_session
     @username = session[:user]
+
+    @current_user=User.find_by(id: @username['id'])
   end
   
 end

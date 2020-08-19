@@ -9,4 +9,10 @@ class Tweet < ApplicationRecord
         end
     end
 
+    def like_user_ids
+        self.likes.map do |like|
+            like.user_id
+        end
+    end
+
 end

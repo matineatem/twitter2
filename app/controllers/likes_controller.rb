@@ -26,6 +26,15 @@ class LikesController < ApplicationController
 
   end
 
+  def destroy
+
+    @tweet= Tweet.find(params[:id])
+    @like = Like.find_by(user_id: @username["id"], tweet_id: @tweet.id)
+    #Tweet.find(params[:format]).id)
+    @like.destroy
+    redirect_back(fallback_location:"/")
+  end
+
 
   private
   def like_params
