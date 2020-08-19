@@ -23,3 +23,6 @@ end
 10.times do  Like.create(user_id: User.all.sample.id, 
     tweet_id: Tweet.all.sample.id) 
 end
+
+10.times do Follow.create(follower_id: User.all.sample.id, followee_id: User.all.sample.id)
+end

@@ -1,8 +1,15 @@
 <h1>Tweet</h1>
-
+<%= form_for @tweet do |f| %>
+	<ul>
+		<% if @tweet.errors.any? %>
+			<%= @tweet.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		<% end %>
+    </ul>
+    <% end %>
 
 <%= form_for @tweet do |f| %>
     <%=f.text_field :text %><br><br>
-    <%=f.collection_select(:user_id, User.all, :id, :name)%>
     <%= f.submit "Tweet" %>
 <% end %>

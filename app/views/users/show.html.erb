@@ -1,5 +1,12 @@
 <h1> Profile Page</h1>
 
+<% if @my_followers.include?(@user.id) %>
+<%= button_to "unfollow", unfollow_path(@user) %> <br>
+<% else %>
+<%= button_to "follow", follow_path(@user) %> <br>
+<% end %>
+
+
 
 <% if @username["id"] == @user.id %>
 <%= link_to "settings", edit_user_path(@user) %><br>

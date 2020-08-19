@@ -20,6 +20,7 @@ class LikesController < ApplicationController
     
     @like = Like.create(user_id: @username["id"], tweet_id: Tweet.find(params[:format]).id)
     #byebug
+    redirect_back(fallback_location:"/")
 
     #@like = Like.create(like_params)
 

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'users/:id/followee', to: "users#followee", as: "followee"
+  get 'users/:id/followers', to: "users#follower", as: "follower"
+  
+  post 'users/:id', to: "users#follow", as: "follow"
+  delete 'users/:id', to: "users#unfollow", as: "unfollow"
+
   resources :users
   resources :tweets, only: [:index, :show, :new, :create, :destroy]
   resources :likes

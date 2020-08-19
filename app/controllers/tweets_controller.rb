@@ -15,7 +15,13 @@ class TweetsController < ApplicationController
   def create
     text = params[:tweet][:text]
     @tweet = Tweet.create(text: text,user_id: @username["id"])
+
+    if @tweet.valid?
+      @tweet.save
     redirect_to tweets_path
+    else
+      render :new
+    end
   end
 
   def destroy

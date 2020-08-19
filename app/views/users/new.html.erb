@@ -1,6 +1,16 @@
 <h1>Create a New User Account</h1>
 
 <%= form_for @user do |f| %>
+	<ul>
+		<% if @user.errors.any? %>
+			<%= @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		<% end %>
+    </ul>
+    <% end %>
+
+<%= form_for @user do |f| %>
     <%=f.label :name %>
     <%=f.text_field :name %><br><br>
     <%=f.label :password %>
