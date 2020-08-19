@@ -1,9 +1,13 @@
 <h1> Profile Page</h1>
+<h3> <%=@user.name%> </h3>
+Followers: <%= link_to @user.followers.uniq.count, follower_path(@user)%>
+Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%>
 
-<% if @my_followers.include?(@user.id) %>
-<%= button_to "unfollow", unfollow_path(@user) %> <br>
+
+<% if @current_user.followees.include?(@user) %>
+    <%= button_to "unfollow", unfollow_path(@user), method: :delete %> <br>
 <% else %>
-<%= button_to "follow", follow_path(@user) %> <br>
+    <%= button_to "follow", follow_path(@user) %> <br>
 <% end %>
 
 

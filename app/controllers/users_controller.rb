@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    byebug
   end
 
   def new
@@ -46,22 +45,31 @@ class UsersController < ApplicationController
     redirect_to homepage_path
   end
 
-  def followee
-    @followees = @user.followees
+  def followees
+    @user = User.find(params[:id])
+    @followees = @user.followees.uniq
   end
 
-  def follower
-    @followers = @user.followers
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.uniq
   end
 
   def follow
-    Follow.create(follower_id: @user.id, followee_id: @username["id"])
-    
+    #Follow.create(follower_id: @user.id, followee_id: @username["id"])
+    @user = User.find(params[:id])
+    # @im_following << @user
+    #byebug
+    @current_user.followees << @user
+    @current_user.save
     redirect_back(fallback_location:"/")
   end
 
   def unfollow
-    @my_followers.delete(@user.id)
+    @user = User.find(params[:id])
+    # @im_following.delete(@user.id)
+    @current_user.followees.delete(@user)
+    @current_user.save
     redirect_back(fallback_location:"/")
     
   end
@@ -75,11 +83,14 @@ class UsersController < ApplicationController
   def set_user_session
     @username = session[:user]
 
-    followees_objects = Follow.where(follower_id: @username["id"] )
-     @im_following = followees_objects.map{ |followees| followees.followee_id}
+    @current_user=User.find_by(id: @username['id'])
 
-    followers_objects = Follow.where(followee_id: @username["id"] )
-    @my_followers = followers_objects.map{ |followers| followers.follower_id}
+  
+    # followees_objects = Follow.where(follower_id: @username["id"] )
+    #  @im_following = followees_objects.map{ |followees| followees.followee_id}
+
+    # followers_objects = Follow.where(followee_id: @username["id"] )
+    # @my_followers = followers_objects.map{ |followers| followers.follower_id}
      
 
   end
@@ -87,3 +98,13 @@ class UsersController < ApplicationController
 
 
 end
+
+
+
+
+# 
+# 
+
+
+
+

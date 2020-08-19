@@ -1,6 +1,0 @@
-<h1> Following </h1>
-
-<% @user.followees.each do |followee| %>
-    <%= link_to followee.handle, user_path(followee) %>
-    <%= followee.name %>
-    <% end %>
