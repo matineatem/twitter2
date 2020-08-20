@@ -10,7 +10,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   </head>
 
+ 
   <body>
+       <div class="navbar-brand">
+       <b style= "color: deepskyblue">  Twitter 2</b>
+    
+      <% if @current_user %>
+|
+      
+      <b class="navbar-brand">
+  		<%= link_to tweets_path, class: "navbar-item" do %>
+  			<b style= "color: deepskyblue">Home</b>
+      <% end %>
+      
+|
+      <b class="navbar-brand">
+  		<%= link_to user_path(@current_user), class: "navbar-item" do %>
+        <b style= "color: deepskyblue">Profile</b>
+        
+      <% end %>
+|
+      <b class="navbar-brand">
+  		<%= link_to logout_path, method: :delete, class: "navbar-item" do %>
+        <b  style= "color: deepskyblue">Logout</b>
+      <% end %>
+  
+      <%end %>
+ 
+
     <%= yield %>
   </body>
 </html>

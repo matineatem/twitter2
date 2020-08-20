@@ -1,4 +1,4 @@
-<h1> Following </h1>
+<h2> Following </h2>
 
 <% @user.followees.uniq.each do |followee| %>
     <b><%= link_to followee.twitter_handle, user_path(followee) %></b><br>

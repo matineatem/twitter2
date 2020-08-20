@@ -1,5 +1,12 @@
 class SessionsController < ApplicationController
+  
+  
   def login
+  end
+  
+  def logout
+    session.clear
+    redirect_to homepage_path
   end
 
   def process_login
@@ -14,5 +21,9 @@ class SessionsController < ApplicationController
       end
 
   end
+
+
+
+
 end
 

@@ -1,4 +1,4 @@
-<h1> People to Follow</h1>
+<h2> People to Follow</h2>
 <% @users.each do |user| %>
     <% next if user == @current_user %>
    <div> <%= link_to user.twitter_handle, user_path(user) %> </div>

@@ -1,4 +1,4 @@
-<h1>News Feed</h1>
+<h2>News Feed</h2>
 
 <%= button_to "my profile", user_path(@username["id"]), method: :get %> <br></br>
 
@@ -16,17 +16,32 @@
     <% @current_user.feed.each do |tweet| %>
         <% if tweet.user %>
             <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id), method: :get %></div> 
-                <h3> <%= link_to tweet.text, tweet_path(tweet) %> <br></h3>
+                <b> <%= link_to tweet.text, tweet_path(tweet) %> <br></b>
                 <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
                 Likes <%= tweet.likes.count %> 
 
+
             <% if tweet.like_user_ids.include?(@current_user.id)%>
-                <%= button_to "❤️", like_path(tweet), method: :delete %>
+
+
+            <button class="ui icon button">
+            <%= link_to "❤️", like_path(tweet), method: :delete %>
+            </button>
+
+            
+
+
             <%else%>
-                 <%= button_to "♡", likes_path(tweet), method: :post %>
+            <button class="ui icon button">
+            <%= link_to "🤍", likes_path(tweet), method: :post %>
+            </button>
             <% end %>
+
+          
                 <% if @username["id"] == tweet.user.id %>
-                    <%= button_to "🗑️", tweet_path(tweet), method: :delete %>
+                <button class="ui icon button">
+                <%= link_to  "🗑️", tweet_path(tweet), method: :delete %>
+                </button>
                 <% end %>
                 <br><br><br><br>
             

@@ -1,5 +1,4 @@
-<h1> Profile Page</h1>
-<h3> <%=@user.name%> </h3>
+<h2> <%=@user.name.titlecase%> </h2>
 Followers: <%= link_to @user.followers.uniq.count, follower_path(@user)%>
 Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%>
 
@@ -26,9 +25,9 @@ Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%>
 
 
 
-<h3> Tweets </h3>
+<h4> Tweets </h4>
 
-    <h3> Number of Tweets: <%= @user.tweets.count %> </h3>
+    <b> Number of Tweets: <%= @user.tweets.count %> </b><br>
 
     <% @user.tweets.reverse.each do |tweet| %>
         <div> <%= link_to @user.twitter_handle, user_path(@user) %></div>

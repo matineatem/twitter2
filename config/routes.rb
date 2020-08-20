@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/", to: "homepage#home", as: "homepage" #show page 
   get "/login", to: "sessions#login" #new 
   post "/login", to: "sessions#process_login" #create
+  delete "/logout", to: "sessions#logout", as: "logout" #new 
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
