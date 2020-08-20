@@ -18,6 +18,18 @@ class User < ApplicationRecord
     end
     
   
+    def feed
+    feed = []
+    self.followees.each do |followee|
+      followee.tweets.each do |tweet|
+       feed << tweet
+      end
+    end
+    self.tweets.each do |tweet|
+        feed << tweet
+    end
+    feed.sort_by(&:created_at).reverse
+  end
     
     
 

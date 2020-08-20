@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_action :set_user_session
+  before_action :set_user_session, except: [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.all 
   end
 
   def show
@@ -39,8 +39,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    #@current_user.destroy
+    #@current_user.tweets.clear
+    
+
+
     @user = User.find(params[:id])
+    # byebug
     @user.destroy
+    # byebug
     @user.tweets.clear
     redirect_to homepage_path
   end

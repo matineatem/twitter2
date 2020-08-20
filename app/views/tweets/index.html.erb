@@ -1,6 +1,6 @@
 <h1>News Feed</h1>
 
-<%= button_to "my profile", user_path(@username["id"]), method: :get %> <br><br>
+<%= button_to "my profile", user_path(@username["id"]), method: :get %> <br></br>
 
 
 <%= form_tag tweets_path, method: :post do %>
@@ -12,23 +12,29 @@
 
 
 
-<% @tweets.reverse.each do |tweet| %>
-<% if tweet.user %>
-    <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id), method: :get %></div> 
-   <h3> <%= link_to tweet.text, tweet_path(tweet) %> <br></h3>
-    <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
-    Likes <%= tweet.likes.count %> 
+<% if @current_user.feed.count > 0%>
+    <% @current_user.feed.each do |tweet| %>
+        <% if tweet.user %>
+            <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id), method: :get %></div> 
+                <h3> <%= link_to tweet.text, tweet_path(tweet) %> <br></h3>
+                <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
+                Likes <%= tweet.likes.count %> 
 
-    <% if tweet.like_user_ids.include?(@current_user.id)%>
-        <%= button_to "❤️", like_path(tweet), method: :delete %>
-    <%else%>
-        <%= button_to "♡", likes_path(tweet), method: :post %>
-    <%end%>
-<% if @username["id"] == tweet.user.id %>
-    <%= button_to "🗑️", tweet_path(tweet), method: :delete %>
+            <% if tweet.like_user_ids.include?(@current_user.id)%>
+                <%= button_to "❤️", like_path(tweet), method: :delete %>
+            <%else%>
+                 <%= button_to "♡", likes_path(tweet), method: :post %>
+            <% end %>
+                <% if @username["id"] == tweet.user.id %>
+                    <%= button_to "🗑️", tweet_path(tweet), method: :delete %>
+                <% end %>
+                <br><br><br><br>
+            
+            <% end %>
+        <% end %>
+    <% else %>
+        No tweets to show.
+        <%= link_to "Find some people to follow.", users_path %>
     <% end %>
-<br><br><br><br>
-    <% end %>
- <% end %>
 
  

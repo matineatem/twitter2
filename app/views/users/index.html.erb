@@ -1,5 +1,12 @@
-<h1> User Accounts</h1>
+<h1> People to Follow</h1>
 <% @users.each do |user| %>
+    <% next if user == @current_user %>
    <div> <%= link_to user.twitter_handle, user_path(user) %> </div>
-        <div> <%= user.name %></div><br>
+   <div> <%= user.name %></div>
+
+    <% if @current_user.followees.include?(user) %>
+    <%= button_to "unfollow", unfollow_path(user), method: :delete %> <br>
+    <% else %>
+    <%= button_to "follow", follow_path(user) %> <br>
     <% end %>
+<% end %>
