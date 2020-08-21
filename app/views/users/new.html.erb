@@ -1,13 +1,12 @@
 <h2>Create a New User Account</h2>
 
 <%= form_for @user do |f| %>
-	<ul>
 		<% if @user.errors.any? %>
 			<% @user.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
+                <a class="ui red basic label"><%= msg %></a><br>
+            <% end %>
+            <br>
 		<% end %>
-    </ul>
     <% end %>
 
 <%= form_for @user do |f| %>

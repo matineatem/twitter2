@@ -31,6 +31,12 @@
       <% end %>
 |
       <b class="navbar-brand">
+  		<%= link_to users_path, class: "navbar-item" do %>
+        <b style= "color: deepskyblue">Users</b>
+        
+      <% end %>
+|
+      <b class="navbar-brand">
   		<%= link_to logout_path, method: :delete, class: "navbar-item" do %>
         <b  style= "color: deepskyblue">Logout</b>
       <% end %>

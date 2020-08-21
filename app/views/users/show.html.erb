@@ -1,12 +1,13 @@
 <h2> <%=@user.name.titlecase%> </h2>
 Followers: <%= link_to @user.followers.uniq.count, follower_path(@user)%>
-Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%>
+Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%><br>
 
-
+<% if @current_user.id != @user.id %>
 <% if @current_user.followees.include?(@user) %>
     <%= button_to "unfollow", unfollow_path(@user), method: :delete %> <br>
 <% else %>
     <%= button_to "follow", follow_path(@user) %> <br>
+<% end %>
 <% end %>
 
 
