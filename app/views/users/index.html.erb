@@ -1,7 +1,8 @@
-<div style="background-color:dodgerblue;">
+<div style="background-color: #3399FF;">
 <div class="ui very padded container">
-<div style="background-color:dodgerblue;">
+<div style="background-color: #3399FF;">
 <h1 style = "color:white">People to Follow</h1>
+</div>
 </div>
 <div class="ui raised very padded text container segment">
 <div class="ui middle aligned divided list">
@@ -12,11 +13,17 @@
          <%= user.name %>
         <% if @current_user.followees.include?(user) %>
         <div class="right floated content">
-            <%= button_to "unfollow", unfollow_path(user), method: :delete %> <br>
+        <button class="mini ui button">
+        <i class="user icon"></i>
+        <%= link_to "Unfollow", unfollow_path(user), method: :delete %> <br>
+        </button>
         </div>
         <% else %>
         <div class="right floated content">
-            <%= button_to "follow", follow_path(user) %> <br>
+        <button class="mini ui button">
+        <i class="user icon"></i>
+        <%= link_to "Follow", follow_path(user), method: :post %> <br>
+        </button>
         </div>
         <% end %>
         </div>
@@ -24,7 +31,9 @@
 <% end %>
 </div>
 </div>
+<br><br><br><br><br>
 </div>
+
 
 
 

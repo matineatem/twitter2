@@ -31,6 +31,17 @@ class TweetsController < ApplicationController
     redirect_back(fallback_location:"/")
   end
 
+  def delete_this
+    @tweet = Tweet.find(params[:id])
+    @user = @tweet.user 
+    @tweet.destroy
+    redirect_to tweets_path
+  end
+
+  def trends
+    @tweets =  Tweet.all
+    @tweets.sample
+  end
 
   private
 

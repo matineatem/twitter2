@@ -1,6 +1,6 @@
-<div style="background-color:dodgerblue;">
+<div style="background-color: #3399FF;">
 <div class="ui very padded container">
-<div style="background-color:dodgerblue;">
+<div style="background-color: #3399FF;">
 <h1 style = "color:white">News Feed</h1>
 
 
@@ -18,11 +18,13 @@
 
   
   
+<div class="ui grid">
 
- 
 
-
+<div class="right floated eight wide column">
 <div class="ui raised very padded text container segment">
+<div class=left>
+
 <% if @current_user.feed.count > 0%>
     <% @current_user.feed.each do |tweet| %>
         <% if tweet.user %>
@@ -57,7 +59,7 @@
           
                 <% if @username["id"] == tweet.user.id %>
                 <button class="ui compact basic icon button">
-                <%= link_to  "🗑️", tweet_path(tweet), method: :delete %>
+                <%= link_to  "🗑️", delete_tweet_path(tweet), method: :delete %>
                 </button>
                 <% end %>
                 
@@ -73,5 +75,28 @@
         <%= link_to "Find some people to follow.", users_path %>
     <% end %>
     </div>
+    </div>
+    </div>
 
- 
+    <div class="four wide column">
+<div class="card">
+<% hashtags = ["#BidenHarris", "#GEazy", "#MoneyOrPower?", "#HungerGains"] %>
+<% hashtags1 = ["#TrumpOrNaw", "#Kamauled", "#Cosmopolitan", "#Love"] %>
+<% hashtags2 = ["#Pringles", "#PopFlower", "#ClimbBack", "#NewMusic"] %>
+<% hashtags3 = ["#CoronaDidIt", "#WeMadeIt", "#HowWeAte500CupNoodles"] %>
+<h2>Whats Happening?</h2><br>
+<div class="ui divider"></div>
+ <h3><a href="/tweets/trends"><%=hashtags.uniq.sample%></a></h3><br><br>
+ <div class="ui divider"></div>
+ <h3><a href="/tweets/trends"><%=hashtags1.sample%></a></h3><br><br>
+ <div class="ui divider"></div>
+<h3> <a href="/tweets/trends"><%=hashtags2.sample%></a></h3><br><br>
+<div class="ui divider"></div>
+ <h3><a href="/tweets/trends"><%=hashtags3.sample%></a></h3><br><br>
+ <div class="ui divider"></div>
+</div>
+</div>
+    
+    </div>
+    </div>
+    </div>

@@ -1,54 +1,82 @@
-<div style="background-color:dodgerblue;">
+<div style="background-color: #3399FF;">
 <div class="ui very padded container">
-<div style="background-color:dodgerblue;">
-<h1 style="color:white"> <%=@user.name.titlecase%> </h1>
-Followers: <%= link_to @user.followers.uniq.count, follower_path(@user)%>
-Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%><br>
-
-<% if @current_user.id != @user.id %>
+<div style = "color:white">
+<h2><%= image_tag("ice.png", :size => "50x50") %>
+<%= @user.name.titlecase %> <br></h2>
 <% if @current_user.followees.include?(@user) %>
-    <%= button_to "unfollow", unfollow_path(@user), method: :delete %> <br>
+<button class="mini ui button">
+<i class="user icon"></i>
+<%= link_to "Unfollow", unfollow_path(@user), method: :delete %> <br>
+</button>
+<% elsif @current_user == @user %>
+<%= "" %>
 <% else %>
-    <%= button_to "follow", follow_path(@user) %> <br>
+  <button class="mini ui button">
+  <i class="user icon"></i>
+  <%= link_to "Follow", follow_path(@user), method: :post %> <br>
+  </button>
 <% end %>
-<% end %>
-
-
-
-<% if @username["id"] == @user.id %>
-<%= link_to "settings", edit_user_path(@user) %><br>
-<% end %>
-
-
-<%= link_to "my feed", tweets_path %><br>
+Followers: <%= link_to @user.followers.uniq.count, follower_path(@user)%> 
+Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%><br><br>
 </div>
 </div>
 </div>
-<div class="ui raised very padded text container segment">
-<div> <%= @user.name.titlecase %> </div>
-<div> <%= @user.twitter_handle %> </div><br>
-<div> bio: <%= @user.bio %> </div><br>
-<div> birthday: <%= @user.birthday %> </div><br>
-</div>
-
-
+<div class="ui grid">
 <div class="ui very padded container">
-<h4> Tweets </h4>
-
-    <b> Number of Tweets: <%= @user.tweets.count %> </b><br>
+<div class="four wide column">
+  
+<b> <%= @user.name.titlecase %> </b><br>
+<b> <%= @user.twitter_handle %> </b><br
+<b> bio: <%= @user.bio %> </b><br>
+<b> birthday: <%= @user.birthday %></b><br>
+<br>
+<% if @current_user == @user %>
+<%= form_tag tweets_path, method: :post do %>
+    <label>Tweet:</label><br>
+    <%= text_area_tag :'tweet[text]' %><br>
+    <%= submit_tag "Submit Post" %><br><br>
+<% end %>
+<% end %>
 </div>
+
+<div class="six wide column">
+  <div class="card">
+<table class="ui very basic table">
+<br>
+<h3> Tweets: <%= @user.tweets.count %> </h3>
+<div class="ui clearing divider"></div>
     <% @user.tweets.reverse.each do |tweet| %>
-        <div class="ui raised very padded text container segment">
-        <div> <%= link_to @user.twitter_handle, user_path(@user) %></div>
+        <thead>
+        <tr>
+            <th>
+            <br>
+        <%= link_to @user.twitter_handle, user_path(@user) %></div>
          <%= link_to tweet.text, tweet_path(tweet) %> <br>
          <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
          Likes <%= tweet.likes.count %> 
-   <% if @username["id"] == @user.id %>
-    <%= link_to "delete tweet", tweet_path(tweet), method: :delete %>
-    <% end %>
-    </div>
-    <% end %>
-    
+         <% if tweet.like_user_ids.include?(@current_user.id)%>
+         <button class="mini ui icon button">
+         <%= link_to "❤️", like_path(tweet), method: :delete %>
+         </button>
+         <%else%>
+         <button class="mini ui icon button">
+         <%= link_to "🤍", likes_path(tweet), method: :post %>
+         </button>
+         <% end %>
+         <% if @username["id"] == @user.id %>
+         <button class="mini ui icon button">
+         <%= link_to  "🗑️", delete_tweet_path(tweet), method: :delete %>
+         </button>
+         <% end %>
+         <br>
+<% end %>
+</th></tr>
+</table>
+  </div>
+</div>
+</div>
+</div>
+</div>
 
 
 

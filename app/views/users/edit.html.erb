@@ -1,5 +1,9 @@
-<h2> Edit Profile </h2>
-
+<div class=center>
+<div style="background-color: #3399FF;">
+<h2 style = "color:white"> Edit Profile </h2>
+<br>
+</div>
+<br>
 <%= form_for @user do |f| %>
     <%= f.label :name %>
     <%=f.text_field :name %><br><br>
@@ -15,3 +19,4 @@
 <% end %>
 
 <%= link_to 'Delete',  destroy_path(@user), method: :delete%>
+</div>
