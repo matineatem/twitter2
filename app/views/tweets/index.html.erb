@@ -1,14 +1,18 @@
-<h2>News Feed</h2>
+<div style="background-color:dodgerblue;">
+<div class="ui very padded container">
+<div style="background-color:dodgerblue;">
+<h1 style = "color:white">News Feed</h1>
 
-<%= button_to "my profile", user_path(@username["id"]), method: :get %> <br></br>
 
-
+<div class="ui raised very padded text container">
 <%= form_tag tweets_path, method: :post do %>
-    <label>Tweet:</label><br>
     <%= text_area_tag :'tweet[text]' %><br>
-    <%= submit_tag "Submit Post" %><br><br>
+    <%= submit_tag "Tweet" %><br><br>
 <% end %>
-
+</div>
+</div>
+</div>
+</div>
 
 
 

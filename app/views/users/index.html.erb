@@ -1,4 +1,9 @@
-<h2> People to Follow</h2>
+<div style="background-color:dodgerblue;">
+<div class="ui very padded container">
+<div style="background-color:dodgerblue;">
+<h1 style = "color:white">People to Follow</h1>
+</div>
+<div class="ui raised very padded text container segment">
 <div class="ui middle aligned divided list">
 <% @users.each do |user| %>
     <% next if user == @current_user %>
@@ -17,7 +22,9 @@
         </div>
 
 <% end %>
-
+</div>
+</div>
+</div>
 
 
 

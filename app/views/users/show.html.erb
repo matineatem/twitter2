@@ -1,4 +1,7 @@
-<h2> <%=@user.name.titlecase%> </h2>
+<div style="background-color:dodgerblue;">
+<div class="ui very padded container">
+<div style="background-color:dodgerblue;">
+<h1 style="color:white"> <%=@user.name.titlecase%> </h1>
 Followers: <%= link_to @user.followers.uniq.count, follower_path(@user)%>
 Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%><br>
 
@@ -17,29 +20,35 @@ Following: <%= link_to @user.followees.uniq.count, followee_path(@user)%><br>
 <% end %>
 
 
-<%= link_to "my feed", tweets_path %><br><br>
-
+<%= link_to "my feed", tweets_path %><br>
+</div>
+</div>
+</div>
+<div class="ui raised very padded text container segment">
 <div> <%= @user.name.titlecase %> </div>
 <div> <%= @user.twitter_handle %> </div><br>
 <div> bio: <%= @user.bio %> </div><br>
 <div> birthday: <%= @user.birthday %> </div><br>
+</div>
 
 
-
+<div class="ui very padded container">
 <h4> Tweets </h4>
 
     <b> Number of Tweets: <%= @user.tweets.count %> </b><br>
-
+</div>
     <% @user.tweets.reverse.each do |tweet| %>
+        <div class="ui raised very padded text container segment">
         <div> <%= link_to @user.twitter_handle, user_path(@user) %></div>
          <%= link_to tweet.text, tweet_path(tweet) %> <br>
          <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
-         Likes <%= tweet.likes.count %> </div> 
+         Likes <%= tweet.likes.count %> 
    <% if @username["id"] == @user.id %>
     <%= link_to "delete tweet", tweet_path(tweet), method: :delete %>
     <% end %>
-<% end %>
-
+    </div>
+    <% end %>
+    
 
 
 
