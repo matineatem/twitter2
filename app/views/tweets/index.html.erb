@@ -1,30 +1,48 @@
 <h2>News Feed</h2>
 
-<%= button_to "my profile", user_path(@username["id"]), method: :get %> <br></br>
-
-
-<%= form_tag tweets_path, method: :post do %>
-    <label>Tweet:</label><br>
-    <%= text_area_tag :'tweet[text]' %><br>
-    <%= submit_tag "Submit Post" %><br><br>
-<% end %>
 
 
 
 
+<div class="row">
+<div class="column">
+  
+
+
+  <%= form_tag tweets_path, method: :post do %>
+      <h2> Tweet!</h2><br>
+      <%= text_area_tag :'tweet[text]' %><br>
+      <%= submit_tag "Submit Post" %><br><br>
+  <% end %>
+  
+  
+  
+</div>
+<div class="column">
+<div class="card">
+  
+
+
+  
+
+
+
+<table class="ui very basic table">
 <% if @current_user.feed.count > 0%>
     <% @current_user.feed.each do |tweet| %>
         <% if tweet.user %>
-            <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id), method: :get %></div> 
-                <b> <%= link_to tweet.text, tweet_path(tweet) %> <br></b>
+        <thead>
+        <tr>
+            <th><b><%= link_to tweet.user.twitter_handle, user_path(tweet.user_id), method: :get %></b><br> 
+                <h4><b> <%= link_to tweet.text, tweet_path(tweet) %> <br></b></h4>
                 <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
                 Likes <%= tweet.likes.count %> 
-
+        
 
             <% if tweet.like_user_ids.include?(@current_user.id)%>
 
 
-            <button class="ui icon button">
+            <button class="mini ui icon button">
             <%= link_to "❤️", like_path(tweet), method: :delete %>
             </button>
 
@@ -32,24 +50,43 @@
 
 
             <%else%>
-            <button class="ui icon button">
+            <button class="mini ui icon button">
             <%= link_to "🤍", likes_path(tweet), method: :post %>
             </button>
             <% end %>
 
-          
+
                 <% if @username["id"] == tweet.user.id %>
-                <button class="ui icon button">
-                <%= link_to  "🗑️", tweet_path(tweet), method: :delete %>
+                <button class="mini ui icon button">
+                <%= link_to  "🗑️", delete_tweet_path(tweet), method: :delete %>
                 </button>
                 <% end %>
                 <br><br><br><br>
             
             <% end %>
         <% end %>
+        </th></tr>
+        <tbody>
+        <tr><td>
+        <%= link_to "Find some people to follow.", users_path %>
     <% else %>
         No tweets to show.
         <%= link_to "Find some people to follow.", users_path %>
-    <% end %>
+    <% end %></td></tr>
+
+</table>
+  
+  
+  
+  </div>
+</div>
+
+</div> 
+
+
+
+
+
+
 
  

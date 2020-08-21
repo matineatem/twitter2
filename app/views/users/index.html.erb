@@ -1,12 +1,21 @@
 <h2> People to Follow</h2>
 <% @users.each do |user| %>
     <% next if user == @current_user %>
+    
    <div> <%= link_to user.twitter_handle, user_path(user) %> </div>
    <div> <%= user.name %></div>
 
     <% if @current_user.followees.include?(user) %>
-    <%= button_to "unfollow", unfollow_path(user), method: :delete %> <br>
+    <button class="mini ui active button">
+    <i class="user icon"></i>
+    <%= link_to "unfollow", unfollow_path(user), method: :delete %> <br>
+    </button><br><br>
+
     <% else %>
-    <%= button_to "follow", follow_path(user) %> <br>
+
+    <%= button_to "follow", follow_path(user), class: "follow-link" %> <br>
+    
+
     <% end %>
+
 <% end %>

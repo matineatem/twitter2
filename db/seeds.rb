@@ -25,4 +25,5 @@ end
 end
 
 10.times do Follow.create(follower_id: User.all.sample.id, followee_id: User.all.sample.id)
+
 end

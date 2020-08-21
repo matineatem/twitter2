@@ -21,7 +21,9 @@
     <%=f.text_field :bio %><br><br>
     <%=f.label :birthday %>
     <%=f.date_field :birthday %><br><br>
-    <%= f.submit "Create Your Account" %>
+    <button class="ui active button">
+    Start Tweeting!<% f.submit %>
+    </button>
 <% end %>
 
 

@@ -1,4 +1,4 @@
-<h2>Tweet#show</h2>
+<h2>Tweet</h2>
 
  
     <div> <%= link_to @tweet.user.twitter_handle, user_path(@tweet.user_id) %></div>
@@ -7,5 +7,5 @@
     Likes <%= @tweet.likes.count %> </div> <br><br>
 
     <% if @username["id"] == @tweet.user.id %>
-<%= link_to "delete tweet", tweet_path(@tweet), method: :delete %>
+<%= link_to "delete tweet", delete_this_path(@tweet), method: :delete %>
 <% end %>

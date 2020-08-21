@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+   @tweet = Tweet.find(params[:id])
   end
 
   def new
@@ -18,7 +18,7 @@ class TweetsController < ApplicationController
 
     if @tweet.valid?
       @tweet.save
-    redirect_to tweets_path
+    redirect_back(fallback_location:"/")
     else
       render :new
     end
@@ -29,6 +29,13 @@ class TweetsController < ApplicationController
     @user = @tweet.user 
     @tweet.destroy
     redirect_back(fallback_location:"/")
+  end
+
+  def delete_this
+    @tweet = Tweet.find(params[:id])
+    @user = @tweet.user 
+    @tweet.destroy
+    redirect_to tweets_path
   end
 
 

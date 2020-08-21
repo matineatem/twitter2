@@ -9,35 +9,105 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   </head>
+  <style>
+  body {
+  background-color: white;
+  opacity: 5;
+}
+.column {
+  float: left;
+  width: 33.33%;
+}
 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.header {
+  background-color: #3399FF;
+  text-align: center;
+  padding: 20px;
+}
+  .sidenav {
+  height: 100%; 
+  width: 160px; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  background-color: #3399FF; 
+  overflow-x: hidden; 
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #FFFFFF;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+  * {
+  
+    text-align: center;
+  }
+  <style>
  
-  <body>
-       <div class="navbar-brand">
-       <b style= "color: deepskyblue">  Twitter 2</b>
-    
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    margin: 7%;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+</style>
+<body>
+
+ <% if @current_user %>
+<div class="sidenav">
+<a href="/tweets"><i class="home icon"> </i></a>
+<a href="/users"><i class="at icon"></i></a>
+<a href="/users/<%= @current_user.id%>"><i class="user icon"></i></a>
+<a href="/users/<%= @current_user.id%>/edit"><i class="cog icon"></i></a>
+</div>
+ <% end %>
+
       <% if @current_user %>
-|
-      
       <b class="navbar-brand">
-  		<%= link_to tweets_path, class: "navbar-item" do %>
-  			<b style= "color: deepskyblue">Home</b>
-      <% end %>
-      
-|
-      <b class="navbar-brand">
-  		<%= link_to user_path(@current_user), class: "navbar-item" do %>
-        <b style= "color: deepskyblue">Profile</b>
-        
-      <% end %>
-|
+       <b style= "color: deepskyblue"><i class="large twitter square icon"></i></b>
+    
+
       <b class="navbar-brand">
   		<%= link_to logout_path, method: :delete, class: "navbar-item" do %>
         <b  style= "color: deepskyblue">Logout</b>
       <% end %>
+  <% else %>
   
-      <%end %>
- 
+  <b class="navbar-brand">
+  <b style= "color: deepskyblue"><i class="massive twitter square icon"></i></b>
+
+      
+      <%end%>
 
     <%= yield %>
+
+
   </body>
 </html>
