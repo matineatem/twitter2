@@ -1,7 +1,18 @@
-<h1> Trending </h1>
+<div style="background-color: #3399FF;">
+<div class="ui very padded container">
+<h1 style = "color:white"> Trending </h1>
+<br>
+</div>
+</div>
+<br>
+<div class="ui very padded container">
 <% @tweets.each do |tweet| %>
+    <%if tweet.user %>
     <div> <%= link_to tweet.user.twitter_handle, user_path(tweet.user_id) %></div>
     <%= link_to tweet.text, tweet_path(tweet) %> <br>
     <%= link_to tweet.created_at, tweet_path(tweet) %> <br>
-    Likes <%= tweet.likes.count %> </div> <br><br>
+    Likes <%= tweet.likes.count %> <br><br>
+    <div class="ui clearing divider"></div>
     <% end %>
+    <% end %>
+    </div>

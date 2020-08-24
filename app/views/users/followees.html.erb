@@ -1,6 +1,13 @@
-<h2> Following </h2>
-
+<div style="background-color: #3399FF;">
+<div class="ui very padded container">
+<h1 style = "color:white"> Following </h1>
+<br>
+</div>
+</div>
+<br>
+<div class="ui very padded container">
 <% @user.followees.uniq.each do |followee| %>
     <b><%= link_to followee.twitter_handle, user_path(followee) %></b><br>
     <%= followee.name %><br><br>
     <% end %>
+</div>

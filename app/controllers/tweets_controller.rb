@@ -18,7 +18,7 @@ class TweetsController < ApplicationController
 
     if @tweet.valid?
       @tweet.save
-    redirect_to tweets_path
+      redirect_back(fallback_location:"/")
     else
       render :new
     end

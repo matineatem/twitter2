@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete 'users/:id/edit', to: "users#destroy", as: "destroy"
   delete 'users/:id', to: "users#unfollow", as: "unfollow"
 
-  resources :tweets, only: [:index, :show, :new, :create, :destroy]
+  resources :tweets, only: [:index, :new, :create, :destroy]
   resources :likes
   
 
@@ -18,12 +18,12 @@ Rails.application.routes.draw do
   delete 'tweets/:id', to: "tweets#destroy", as: "delete_tweet"
   delete 'tweets/:id/show', to: "tweets#delete_this", as: "delete_this"
  
-
+  get "/tweets/:id", to: "tweets#show", as: "show_tweet"
   get "/", to: "homepage#home", as: "homepage" #show page 
   get "/login", to: "sessions#login" #new 
   post "/login", to: "sessions#process_login" #create
   delete "/logout", to: "sessions#logout", as: "logout" #new 
-  get '/tweets/trends', to: "tweets#trends", as: "trends"
+  get '/trends', to: "tweets#trends", as: "trends"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
